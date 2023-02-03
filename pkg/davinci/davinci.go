@@ -3,7 +3,9 @@ package davinci
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/joho/godotenv"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -29,10 +31,10 @@ func getKey() string {
 	return os.Getenv("API_KEY")
 }
 
-func getDavinci() {
+func GetDavinci() []byte {
 	aiBody := OpenAIBody{
 		Model:             "text-davinci-003",
-		Prompt:            "",
+		Prompt:            "Hello",
 		Temperature:       1,
 		Max_tokens:        256,
 		Top_p:             1,
@@ -48,5 +50,11 @@ func getDavinci() {
 	client := &http.Client{}
 	resp, _ := client.Do(req)
 
-	return resp
+	respBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Printf("client: could not read response body: %s\n", err)
+		os.Exit(1)
+	}
+
+	return respBody
 }

@@ -2,6 +2,7 @@ package davinci
 
 import (
 	"fmt"
+	"github.com/Shan15Dev/GPT-Cli/pkg/davinci"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +14,7 @@ var askCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		i := args
 		fmt.Printf(i[0])
+		fmt.Printf(string(davinci.GetDavinci()))
 	},
 }
 
