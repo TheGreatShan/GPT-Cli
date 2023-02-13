@@ -31,10 +31,10 @@ func getKey() string {
 	return os.Getenv("API_KEY")
 }
 
-func GetDavinci() []byte {
+func GetDavinci(inputText string) []byte {
 	aiBody := OpenAIBody{
 		Model:             "text-davinci-003",
-		Prompt:            "Hello",
+		Prompt:            inputText,
 		Temperature:       1,
 		Max_tokens:        256,
 		Top_p:             1,
