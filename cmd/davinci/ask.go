@@ -8,12 +8,13 @@ import (
 
 var askCmd = &cobra.Command{
 	Use:     "ask",
-	Aliases: []string{"a"},
+	Aliases: []string{""},
 	Short:   "Ask Davinci GPT-3 something",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		i := args
-		fmt.Printf(string(davinci.GetDavinci(i[0])))
+		fmt.Println(fmt.Sprintf("You: %s", i[0]))
+		fmt.Println(fmt.Sprintf("GPT-3: %s", davinci.GetDavinci(i[0])))
 	},
 }
 
