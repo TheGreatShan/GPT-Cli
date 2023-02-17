@@ -49,7 +49,7 @@ func getKey() string {
 	return os.Getenv("API_KEY")
 }
 
-func GetDavinci(inputText string) []byte {
+func GetDavinci(inputText string) string {
 	aiBody := OpenAIBody{
 		Model:             "text-davinci-003",
 		Prompt:            inputText,
@@ -73,6 +73,12 @@ func GetDavinci(inputText string) []byte {
 		fmt.Printf("client: could not read response body: %s\n", err)
 		os.Exit(1)
 	}
+	var response OpenAIResp
 
-	return respBody
+	err = json.Unmarshal(respBody, &response)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return response.Choices[0].Text
 }
