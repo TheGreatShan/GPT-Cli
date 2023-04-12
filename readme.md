@@ -21,13 +21,13 @@ NOTE: The requirements section contains functional and non-functional requiremen
 
 ### CLI package
 
-::: mermaid
+```mermaid
 classDiagram
     class main
     class cli
 
     main --> cli
-:::
+```
 
 Classes:
 - main
