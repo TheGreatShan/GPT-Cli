@@ -29,7 +29,7 @@ classDiagram
     main --> cli
 ```
 
-Classes:
+#### Classes
 
 - main
   - Responsibility: Starting point of the application
@@ -55,16 +55,32 @@ classDiagram
     answer --> question
 ```
 
-Classes:
+#### Classes
 
 - answer
   - Responsibility: Fetches the answer and provides it
-- history
-  - Saves questons and answers in a csv
 - question
-  - Contains the question
+  - Responsibility: Contains the question
 - ask
-  - Asks GPT-4 or a Mock the user-entered question
+  - Responsibility: Asks GPT-4 or a Mock the user-entered question
+
+### History package
+
+```mermaid
+classDiagram
+  class answer
+  class history
+
+  answer --> history
+```
+
+#### Classes
+
+- answer
+  - Responsibility: Receives the answer of GPT-4
+- history
+  - Responsibility: Saves questions and answers in a csv
 
 ### Process
+
 ![Signavio process for GPT-cli](doc/gpt-cli-signavio-BPMN.jpg)
