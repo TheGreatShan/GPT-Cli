@@ -67,3 +67,6 @@ Classes:
   - contains the question
 - ask
   - Manages the question of the user
+
+### Process
+![Signavio process for GPT-cli](doc/gpt-cli-signavio-BPMN.jpg)
