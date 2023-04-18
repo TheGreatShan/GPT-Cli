@@ -50,10 +50,8 @@ classDiagram
     class answer
     class question
     class ask
-    class history
 
     ask --> answer
-    answer --> history
     answer --> question
 ```
 
@@ -64,9 +62,9 @@ Classes:
 - history
   - Saves questons and answers in a csv
 - question
-  - contains the question
+  - Contains the question
 - ask
-  - Manages the question of the user
+  - Asks GPT-4 or a Mock the user-entered question
 
 ### Process
 ![Signavio process for GPT-cli](doc/gpt-cli-signavio-BPMN.jpg)
