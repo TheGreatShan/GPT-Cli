@@ -13,11 +13,11 @@ NOTE: The requirements section contains functional and non-functional requiremen
 | R4 | As Shansai I want to have an encrypted connection for asking questions, so that no one else can see what I am asking | High |
 | R5 | As Gianni I want to have a [SOLID](https://de.wikipedia.org/wiki/Prinzipien_objektorientierten_Designs#SOLID-Prinzipien) compliant software design, so that Shansai can write better software that is more robust, reusable, extensible, readable and maintainable | High |
 
-## Design 
+## Design
 
 ### Package
 
-![](doc/GPT-CLI_Package-diagram.drawio.png)
+![GPT-Cli Package diagram](doc/GPT-CLI_Package-diagram.drawio.png)
 
 ### CLI package
 
@@ -30,14 +30,15 @@ classDiagram
 ```
 
 Classes:
+
 - main
-    - Responsibility: Starting point of the application
+  - Responsibility: Starting point of the application
 - cli
-    - Responsibility: Manages all the CLI commands
+  - Responsibility: Manages all the CLI commands
 
 ### Ask package
 
-![](doc/Ask_package_class_diagram.drawio.png)
+![Package diagram of ask class](doc/Ask_package_class_diagram.drawio.png)
 
 - Responsibility: Manages the question asking with 3rd party providers
 - Dependency-Inversion-Principle: Introduced IAnswerProvider as an interface class, so that the implementations of the interface a decoupled from the consumer (class ask)
@@ -57,11 +58,12 @@ classDiagram
 ```
 
 Classes:
+
 - answer
-    - Responsibility: Fetches the answer and provides it
+  - Responsibility: Fetches the answer and provides it
 - history
-    - Saves questons and answers in a csv
+  - Saves questons and answers in a csv
 - question
-    - contains the question
+  - contains the question
 - ask
-    - Manages the question of the user
+  - Manages the question of the user
