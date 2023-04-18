@@ -41,3 +41,27 @@ Classes:
 
 - Responsibility: Manages the question asking with 3rd party providers
 - Dependency-Inversion-Principle: Introduced IAnswerProvider as an interface class, so that the implementations of the interface a decoupled from the consumer (class ask)
+
+### Answer package
+
+```mermaid
+classDiagram
+    class answer
+    class question
+    class ask
+    class history
+
+    ask --> answer
+    answer --> history
+    answer --> question
+```
+
+Classes:
+- answer
+    - Responsibility: Fetches the answer and provides it
+- history
+    - Saves questons and answers in a csv
+- question
+    - contains the question
+- ask
+    - Manages the question of the user
