@@ -51,7 +51,7 @@ classDiagram
     class question
     class ask
 
-    ask --> answer
+    ask <-- answer
     answer --> question
 ```
 
@@ -71,7 +71,7 @@ classDiagram
   class answer
   class history
 
-  answer --> history
+  answer <-- history
 ```
 
 #### Classes
