@@ -39,7 +39,17 @@ classDiagram
 
 ### Ask package
 
-![Package diagram of ask class](doc/Ask_package_class_diagram.drawio.png)
+```mermaid
+classDiagram
+  class Ask
+  class IAnswerProvider
+  class Mock
+  class GPT
+
+  Ask --> IAnswerProvider
+  IAnswerProvider --> Mock
+  IAnswerProvider --> GPT
+```
 
 - Responsibility: Manages the question asking with 3rd party providers
 - Dependency-Inversion-Principle: Introduced IAnswerProvider as an interface class, so that the implementations of the interface a decoupled from the consumer (class ask)
@@ -52,7 +62,7 @@ classDiagram
     class question
     class ask
 
-    ask --> answer
+    ask <-- answer
     answer --> question
 ```
 
@@ -72,7 +82,7 @@ classDiagram
   class answer
   class history
 
-  history --> answer
+  answer <-- history
 ```
 
 #### Classes
