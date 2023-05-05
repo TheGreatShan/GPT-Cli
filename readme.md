@@ -12,6 +12,7 @@ NOTE: The requirements section contains functional and non-functional requiremen
 | R3 | As Shansai I want to have a history of all the asked questions with the answers | High |
 | R4 | As Shansai I want to have an encrypted connection for asking questions, so that no one else can see what I am asking | High |
 | R5 | As Gianni I want to have a [SOLID](https://de.wikipedia.org/wiki/Prinzipien_objektorientierten_Designs#SOLID-Prinzipien) compliant software design, so that Shansai can write better software that is more robust, reusable, extensible, readable and maintainable | High |
+| R6 | As Gianni I want to have logic sperated from data so that the logic is encapsulated and can be used in different context| High |
 
 ## Design
 
@@ -71,13 +72,13 @@ classDiagram
   class answer
   class history
 
-  answer --> history
+  history --> answer
 ```
 
 #### Classes
 
 - answer
-  - Responsibility: Receives the answer of GPT-4
+  - Responsibility: Receives and  the answer of GPT-4
 - history
   - Responsibility: Saves questions and answers in a csv
 
