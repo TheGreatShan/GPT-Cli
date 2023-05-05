@@ -13,8 +13,8 @@ var askCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		i := args
-		fmt.Println(fmt.Sprintf("You: %s", i[0]))
-		fmt.Println(fmt.Sprintf("GPT-3: %s", davinci.GetDavinci(i[0])))
+		fmt.Printf(fmt.Sprintf("You: %s \n", i[0]))
+		fmt.Printf(fmt.Sprintf("GPT-3: %s \n", davinci.GetDavinci(i[0])))
 	},
 }
 
