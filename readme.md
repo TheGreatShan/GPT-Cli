@@ -45,14 +45,54 @@ classDiagram
   class IAnswerProvider
   class Mock
   class GPT
+  class AnswerProviderFactory
 
   Ask --> IAnswerProvider
-  IAnswerProvider --> Mock
-  IAnswerProvider --> GPT
+  Ask --> AnswerProviderFactory
+  IAnswerProvider <|-- Mock
+  IAnswerProvider <|-- GPT
+
+  AnswerProviderFactory *-- Mock
+  AnswerProviderFactory *-- GPT
+
+  GPT --> GPTQuestionRequest
+  GPT --> GPTQuestionAnswer
+
+  class AnswerProviderFactory{
+        +createProvider(provider: enum)
+  }
+
+  class IAnswerProvider{
+        +ask(question: string)
+  }
+
+  class GPT{
+        +ask(question: string)
+  }
+
+  class Mock{
+        +ask(question: string)
+  }
+
+  class GPTQuestionRequest{
+    
+  }
+
+  class GPTQuestionAnswer{
+    
+  }
 ```
 
 - Responsibility: Manages the question asking with 3rd party providers
 - Dependency-Inversion-Principle: Introduced IAnswerProvider as an interface class, so that the implementations of the interface a decoupled from the consumer (class ask)
+
+#### Create GPT provider
+
+```mermaid
+sequenceDiagram
+    Ask->>AnswerProviderFactory: create(GPT)
+    AnswerProviderFactory->>GPT: new()
+```
 
 ### Answer package
 
