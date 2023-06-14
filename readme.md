@@ -16,7 +16,7 @@ NOTE: The requirements section contains functional and non-functional requiremen
 
 ## Design
 
-### Package
+### Package0
 
 ![GPT-Cli Package diagram](doc/GPT-CLI_Package-diagram.drawio.png)
 
@@ -98,12 +98,20 @@ sequenceDiagram
 
 ```mermaid
 classDiagram
-    class answer
+    class answerProvider
     class question
     class ask
 
-    ask <-- answer
-    answer --> question
+    ask <-- answerProvider
+    answerProvider --> question
+```
+```mermaid
+sequenceDiagram
+  Ask->>AnswerProvider: ask(question)
+  AnswerProvider->>OpenAI: question
+  OpenAI->>AnswerProvider: answers
+  AnswerProvider->>Ask: answer
+  AnswerProvider->>Question: Question + Answer 
 ```
 
 #### Classes
