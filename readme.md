@@ -92,19 +92,27 @@ classDiagram
 sequenceDiagram
     Ask->>AnswerProviderFactory: create(GPT)
     AnswerProviderFactory->>GPT: new()
+    GPT ->> AnswerProviderFactory : return new GPT instance
 ```
 
 ### Answer package
 
 ```mermaid
 classDiagram
-    class answerProvider
-    class question
-    class ask
+    class answerProvider{
+      + contactOpenAI(question: string) Answer
+    }
+    class question{
+      - question : string
+    }
+    class ask {
+      + ask(question: string)
+    }
 
     ask <-- answerProvider
     answerProvider --> question
 ```
+
 ```mermaid
 sequenceDiagram
   Ask->>AnswerProvider: ask(question)
@@ -127,8 +135,19 @@ sequenceDiagram
 
 ```mermaid
 classDiagram
-  class answer
-  class history
+  class answer{
+    - id : UUID
+    - question: string
+    - answer : string
+    - TimeStamp : timestamp
+    + getAnswer() Answer
+  }
+  class history{
+    - answers : Answer[]
+    + save(answer : Answer)
+    + getHistory() Answer[]
+    + getHistoryById(id : UUID) Answer
+  }
 
   answer <-- history
 ```
@@ -136,7 +155,7 @@ classDiagram
 #### Classes
 
 - answer
-  - Responsibility: Receives and  the answer of GPT-4
+  - Responsibility: Receives the answer of GPT-4
 - history
   - Responsibility: Saves questions and answers in a csv
 
