@@ -16,7 +16,7 @@ NOTE: The requirements section contains functional and non-functional requiremen
 
 ## Design
 
-### Package0
+### Package
 
 ![GPT-Cli Package diagram](doc/GPT-CLI_Package-diagram.drawio.png)
 
@@ -41,7 +41,9 @@ classDiagram
 
 ```mermaid
 classDiagram
-  class Ask
+  class Ask{
+      
+  }
   class IAnswerProvider
   class Mock
   class GPT
@@ -57,21 +59,20 @@ classDiagram
 
   GPT --> GPTQuestionRequest
   GPT --> GPTQuestionAnswer
-
   class AnswerProviderFactory{
         +createProvider(provider: enum)
   }
 
   class IAnswerProvider{
-        +ask(question: string)
+        +ask(question: string) Answer
   }
 
   class GPT{
-        +ask(question: string)
+        +ask(question: string) Answer
   }
 
   class Mock{
-        +ask(question: string)
+        +ask(question: string) Answer
   }
 
   class GPTQuestionRequest{
@@ -99,8 +100,7 @@ sequenceDiagram
 
 ```mermaid
 classDiagram
-    class answerProvider{
-      + contactOpenAI(question: string) Answer
+    class IAnswerProvider{
     }
     class question{
       - question : string
@@ -109,17 +109,17 @@ classDiagram
       + ask(question: string)
     }
 
-    ask <-- answerProvider
-    answerProvider --> question
+    ask <-- IAnswerProvider
+    IAnswerProvider --> question
 ```
 
 ```mermaid
 sequenceDiagram
   Ask->>AnswerProvider: ask(question)
+  AnswerProvider->>Question: question 
   AnswerProvider->>OpenAI: question
   OpenAI->>AnswerProvider: answers
   AnswerProvider->>Ask: answer
-  AnswerProvider->>Question: Question + Answer 
 ```
 
 #### Classes
