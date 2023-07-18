@@ -20,28 +20,6 @@ NOTE: The requirements section contains functional and non-functional requiremen
 
 ![GPT-Cli Package diagram](doc/GPT-CLI_Package-diagram.drawio.png)
 
-```mermaid
-classDiagram
-  class Commands
-  class CLI
-  class Question
-  class Ask
-  class Answer
-  class Mock
-  class GPT API
-  class History
-
-  Commands --> CLI
-  CLI --> History
-  Answer --> History
-  CLI --> Question
-  CLI --> Ask
-  Ask --> Answer
-  Answer --> Question
-  Ask --> Mock
-  Ask --> GPT API
-```
-
 ### CLI package
 
 ```mermaid
@@ -183,6 +161,13 @@ classDiagram
   - Responsibility: Receives the answer of GPT-4
 - history
   - Responsibility: Saves questions and answers in a csv
+
+### CLI-Commands
+
+| Command | Explanation |
+|---------|--------------|
+|ask      | The ask method is used to ask questions to the OpenAI API |
+|history|With the history command, the chat history with GPT-4 is shown|
 
 ### Process
 
