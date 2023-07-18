@@ -4,21 +4,43 @@
 
 NOTE: The requirements section contains functional and non-functional requirements.
 
-| ID | Requirements | Importance |
-| -- | ------------ | ---------- |
-| R0 | As Shansai I want to have an easy to use CLI, so that I can ask questions to ChatGPT-4 | High |
-| R1 | As a Tester I want to test the CLI-application without connecting to ChatGPT-4 | High |
-| R2 | As a Developer I want to add easily new providers for asking questions | High |
-| R3 | As Shansai I want to have a history of all the asked questions with the answers | High |
-| R4 | As Shansai I want to have an encrypted connection for asking questions, so that no one else can see what I am asking | High |
-| R5 | As Gianni I want to have a [SOLID](https://de.wikipedia.org/wiki/Prinzipien_objektorientierten_Designs#SOLID-Prinzipien) compliant software design, so that Shansai can write better software that is more robust, reusable, extensible, readable and maintainable | High |
-| R6 | As Gianni I want to have logic sperated from data so that the logic is encapsulated and can be used in different context| High |
+| ID | Requirements                                                                                                                                                                                                                                                   | Importance |
+| -- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| R0 | As Shansai I want to have an easy to use CLI, so that I can ask questions to ChatGPT-4                                                                                                                                                                         | High       |
+| R1 | As a Tester I want to test the CLI-application without connecting to ChatGPT-4                                                                                                                                                                                 | High       |
+| R2 | As a Developer I want to add easily new providers for asking questions                                                                                                                                                                                         | High       |
+| R3 | As Shansai I want to have a history of all the asked questions with the answers                                                                                                                                                                                | High       |
+| R4 | As Shansai I want to have an encrypted connection for asking questions, so that no one else can see what I am asking                                                                                                                                           | High       |
+| R5 | As Gianni I want to have a[SOLID](https://de.wikipedia.org/wiki/Prinzipien_objektorientierten_Designs#SOLID-Prinzipien) compliant software design, so that Shansai can write better software that is more robust, reusable, extensible, readable and maintainable | High       |
+| R6 | As Gianni I want to have logic sperated from data so that the logic is encapsulated and can be used in different context                                                                                                                                       | High       |
 
 ## Design
 
 ### Package
 
 ![GPT-Cli Package diagram](doc/GPT-CLI_Package-diagram.drawio.png)
+
+```mermaid
+classDiagram
+  class Commands
+  class CLI
+  class Question
+  class Ask
+  class Answer
+  class Mock
+  class GPT API
+  class History
+
+  Commands --> CLI
+  CLI --> History
+  Answer --> History
+  CLI --> Question
+  CLI --> Ask
+  Ask --> Answer
+  Answer --> Question
+  Ask --> Mock
+  Ask --> GPT API
+```
 
 ### CLI package
 
@@ -42,7 +64,7 @@ classDiagram
 ```mermaid
 classDiagram
   class Ask{
-      
+  
   }
   class IAnswerProvider
   class Mock
@@ -76,11 +98,11 @@ classDiagram
   }
 
   class GPTQuestionRequest{
-    
+  
   }
 
   class GPTQuestionAnswer{
-    
+  
   }
 ```
 
@@ -109,14 +131,14 @@ classDiagram
       + ask(question: string)
     }
 
-    ask <-- IAnswerProvider
+    ask --> IAnswerProvider
     IAnswerProvider --> question
 ```
 
 ```mermaid
 sequenceDiagram
   Ask->>AnswerProvider: ask(question)
-  AnswerProvider->>Question: question 
+  AnswerProvider->>Question: new question
   AnswerProvider->>OpenAI: question
   OpenAI->>AnswerProvider: answers
   AnswerProvider->>Ask: answer
@@ -135,9 +157,11 @@ sequenceDiagram
 
 ```mermaid
 classDiagram
+  class question{
+    - question : string
+  }
   class answer{
     - id : UUID
-    - question: string
     - answer : string
     - TimeStamp : timestamp
     + getAnswer() Answer
@@ -149,7 +173,8 @@ classDiagram
     + getHistoryById(id : UUID) Answer
   }
 
-  answer <-- history
+  question <-- history
+  answer <--* question
 ```
 
 #### Classes
@@ -161,4 +186,4 @@ classDiagram
 
 ### Process
 
-![Signavio process for GPT-cli](doc/gpt-cli-signavio-BPMN.jpg)
+![Signavio process for GPT-cli](doc/GPT-CLI.svg)
