@@ -164,10 +164,10 @@ classDiagram
 
 ### CLI-Commands
 
-| Command | Explanation |
-|---------|--------------|
-|ask      | The ask method is used to ask questions to the OpenAI API |
-|history|With the history command, the chat history with GPT-4 is shown|
+| Command | Explanation                                                    |
+| ------- | -------------------------------------------------------------- |
+| ask     | The ask method is used to ask questions to the OpenAI API      |
+| history | With the history command, the chat history with GPT-4 is shown |
 
 ### Process
 
