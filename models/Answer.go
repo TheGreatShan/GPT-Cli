@@ -14,7 +14,7 @@ type Answer struct {
 
 func getAnswer(answer string) Answer {
 	return Answer{
-		Id:        uuid.New(),
+		Id:        uuid.UUID{},
 		Answer:    answer,
 		TimeStamp: time.Now(),
 	}
